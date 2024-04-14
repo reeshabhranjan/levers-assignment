@@ -5,15 +5,15 @@ from db.database import Base
 
 
 class Bill(Base):
-    __tablename__ = "bills"
+    __tablename__ = 'bills'
     id = Column(Integer, primary_key=True, index=True)  # do we need index=True if it's primary key?
     total = Column(Numeric(10, 2), nullable=False)
 
 
 class SubBill(Base):
-    __tablename__ = "sub_bills"
+    __tablename__ = 'sub_bills'
     id = Column(Integer, primary_key=True, index=True)
     amount = Column(Numeric(10, 2), nullable=False)
     reference = Column(String(), nullable=True, default=None, unique=True)
-    bill_id = Column(Integer, ForeignKey("bills.id"))
-    bill = relationship("Bill", back_populates="sub_bills")
+    bill_id = Column(Integer, ForeignKey('bills.id', ondelete='CASCADE'))
+    bill = relationship('Bill', back_populates='sub_bills')
