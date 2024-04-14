@@ -1,6 +1,6 @@
 from decimal import Decimal
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class SubBillBase(BaseModel):
@@ -16,8 +16,7 @@ class SubBill(SubBillBase):
     id: int
     bill_id: int
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class BillBase(BaseModel):
@@ -28,9 +27,12 @@ class BillCreate(BillBase):
     pass
 
 
+class BillCreateWithSubBills(BillCreate):
+    sub_bills: list[SubBillCreate]
+
+
 class Bill(BillBase):
     id: int
     sub_bills: list[SubBill] = []
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)

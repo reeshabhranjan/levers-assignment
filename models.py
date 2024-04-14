@@ -1,13 +1,14 @@
 from sqlalchemy import Column, Numeric, String, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 
-from db.database import Base
+from database import Base
 
 
 class Bill(Base):
     __tablename__ = 'bills'
     id = Column(Integer, primary_key=True, index=True)  # do we need index=True if it's primary key?
     total = Column(Numeric(10, 2), nullable=False)
+    sub_bills = relationship('SubBill', back_populates='bill')
 
 
 class SubBill(Base):

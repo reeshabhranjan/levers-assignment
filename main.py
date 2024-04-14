@@ -1,13 +1,26 @@
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
+from sqlalchemy.orm import Session
+
+import crud
+import schemas
+from database import SessionLocal
 
 app = FastAPI()
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
+@app.post('/bills/', response_model=schemas.Bill)
+def create_bill(bill: schemas.BillCreateWithSubBills, db: Session = Depends(get_db)):
+    return crud.create_bill_with_sub_bills(db, bill)
+
+
+@app.get('/bills/', response_model=list[schemas.Bill])
+def get_bills(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    return crud.get_bills(db, skip, limit)
