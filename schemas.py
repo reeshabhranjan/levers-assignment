@@ -1,10 +1,10 @@
 from decimal import Decimal
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class SubBillBase(BaseModel):
-    amount: Decimal
+    amount: Decimal = Field(gt=0)
     reference: str | None = None
 
 
@@ -13,14 +13,11 @@ class SubBillCreate(SubBillBase):
 
 
 class SubBill(SubBillBase):
-    id: int
-    bill_id: int
-
     model_config = ConfigDict(from_attributes=True)
 
 
 class BillBase(BaseModel):
-    total: Decimal
+    total: Decimal = Field(gt=0)
 
 
 class BillCreate(BillBase):
