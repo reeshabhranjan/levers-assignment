@@ -3,14 +3,13 @@ from typing import List
 
 from sqlalchemy.orm import Session
 
-import models
-import schemas
-from schemas import SubBillCreate
+from app.bills import schemas
+from app.db import models
 
 
 def create_bill_with_sub_bills(db: Session, bill: schemas.BillCreateWithSubBills):
     bill_data = bill.dict()
-    sub_bills_data: List[SubBillCreate] = bill_data.pop('sub_bills', None)
+    sub_bills_data: List[schemas.SubBillCreate] = bill_data.pop('sub_bills', None)
     db_bill = models.Bill(**bill_data)
     db.add(db_bill)
     db.commit()

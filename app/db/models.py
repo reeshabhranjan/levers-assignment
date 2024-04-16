@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Numeric, String, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 
-from database import Base
+from app.db.database import Base
 
 
 class Bill(Base):

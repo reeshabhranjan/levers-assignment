@@ -1,14 +1,14 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
-import crud
-import schemas
+from app.bills import crud, schemas
 
 
 def validate_create_bill(bill: schemas.BillCreateWithSubBills, db: Session):
     references = [sub_bill.reference.lower() for sub_bill in bill.sub_bills if sub_bill.reference]
+    print(references)
 
-    if len(references) != 1 and len(set(references)) <= len(references):
+    if len(references) != 1 and len(set(references)) < len(references):
         raise HTTPException(status_code=400, detail='Reference must be unique')
 
     if sum(sub_bill.amount for sub_bill in bill.sub_bills) != bill.total:
