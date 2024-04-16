@@ -29,6 +29,25 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    image: nginx-certbot
+    restart: unless-stopped
+    volumes:
+      - nginx-logs:/var/log/nginx/
+      - nginx_secrets:/etc/letsencrypt
+      - ./compose/local/nginx/:/etc/nginx/user_conf.d/
+    depends_on:
+      - web
+    networks:
+      - backend-network
+    ports:
+      - "80:80"
+      - "443:443"
+    env_file:
+      - ./.env
 
 networks:
   backend-network:
