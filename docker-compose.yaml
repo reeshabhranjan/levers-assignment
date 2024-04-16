@@ -13,6 +13,7 @@ services:
       - backend-network
     depends_on:
       - db
+    user: root
     command: /app/start.sh
 
   db:
