@@ -38,7 +38,7 @@ services:
     volumes:
       - nginx-logs:/var/log/nginx/
       - nginx_secrets:/etc/letsencrypt
-      - ./compose/local/nginx/:/etc/nginx/user_conf.d/
+      - ./nginx/:/etc/nginx/user_conf.d/
     depends_on:
       - web
     networks:
