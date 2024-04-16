@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from fastapi import Depends, FastAPI
 from sqlalchemy.orm import Session
 
@@ -24,5 +26,6 @@ def create_bill(bill: schemas.BillCreateWithSubBills, db: Session = Depends(get_
 
 
 @app.get('/bills/', response_model=list[schemas.Bill])
-def get_bills(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    return crud.get_bills(db, skip, limit)
+def get_bills(skip: int = 0, limit: int = 100, reference: str | None = None, total_from: Decimal | None = None,
+              total_to: Decimal | None = None, db: Session = Depends(get_db)):
+    return crud.get_bills(db, skip, limit, reference, total_from, total_to)
