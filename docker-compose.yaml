@@ -15,7 +15,6 @@ services:
       - db
     command: /app/start.sh
 
-
   db:
     image: "postgres"
     environment:
