@@ -54,3 +54,5 @@ networks:
 
 volumes:
   postgres_data:
+  nginx_secrets:
+  nginx-logs:
