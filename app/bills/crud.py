@@ -8,7 +8,7 @@ from app.db import models
 
 
 def create_bill_with_sub_bills(db: Session, bill: schemas.BillCreateWithSubBills):
-    bill_data = bill.dict()
+    bill_data = bill.model_dump()
     sub_bills_data: List[schemas.SubBillCreate] = bill_data.pop('sub_bills', None)
     db_bill = models.Bill(**bill_data)
     db.add(db_bill)
