@@ -47,7 +47,7 @@ def setup():
     for reference_prefix in ['ref', 'inv', 'bill']:
         sub_bills = [
             schemas.SubBillCreate(
-                amount=Decimal(fake.random_number(digits=2)),
+                amount=Decimal(fake.random.randint(1, 50)),
                 reference=f'{reference_prefix}_{reference_suffix}'
             ) for reference_suffix in range(1, 3)
         ]
