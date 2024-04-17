@@ -7,8 +7,8 @@ Before you begin, ensure you have met the following requirements:
 - You have installed Docker and Docker Compose on your machine.
 - You are familiar with basic Docker operations and command line usage.
 
-![deployment](https://github.com/reeshabhranjan/levers-assignment/blob/master/.github/workflows/main.yml/badge.svg)
-![testing](https://github.com/reeshabhranjan/levers-assignment/blob/master/.github/workflows/tests.yml/badge.svg)
+![deployment](https://github.com/reeshabhranjan/levers-assignment/actions/workflows/main.yml/badge.svg)
+![testing](https://github.com/reeshabhranjan/levers-assignment/actions/workflows/tests.yml/badge.svg)
 
 ## Getting Started
 
