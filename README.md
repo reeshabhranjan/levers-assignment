@@ -3,6 +3,8 @@
 ![deployment](https://github.com/reeshabhranjan/levers-assignment/actions/workflows/main.yml/badge.svg)
 ![testing](https://github.com/reeshabhranjan/levers-assignment/actions/workflows/tests.yml/badge.svg)
 
+Deployment: [levers-assignment](https://levers-assignment.reeshabh.in/docs)
+
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
