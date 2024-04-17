@@ -13,11 +13,11 @@ def validate_create_bill(bill: schemas.BillCreateWithSubBills, db: Session):
 
     sum_bill_amount_total = sum(sub_bill.amount for sub_bill in bill.sub_bills)
     if sum_bill_amount_total > bill.total:
-        raise HTTPException(status_code=400, detail='Sum of the sub_bill is greater than the total amount of the '
+        raise HTTPException(status_code=400, detail=f'Sum of the sub_bill is greater than the total amount of the '
                                                     'bill! (total: {bill.total}, sum: {sum_bill_amount_total})')
 
     if sum_bill_amount_total < bill.total:
-        raise HTTPException(status_code=400, detail='Sum of the sub_bill is less than the total amount of the bill! ('
+        raise HTTPException(status_code=400, detail=f'Sum of the sub_bill is less than the total amount of the bill! ('
                                                     'total: {bill.total}, sum: {sum_bill_amount_total})')
 
     # keeping it at the end to avoid unnecessary db queries
